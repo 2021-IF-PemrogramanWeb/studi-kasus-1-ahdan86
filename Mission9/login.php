@@ -1,11 +1,5 @@
 <?php
-
-if ($_POST["email"] == "ahdanamanullah@gmail.com" && $_POST["password"] == "bebekkucingkulucu") {
-  echo "Login Berhasil";
-} else {
-  echo "Login Gagal";
-}
-
+    require '../functions.php'
 ?>
 
 <!DOCTYPE html>
@@ -14,12 +8,12 @@ if ($_POST["email"] == "ahdanamanullah@gmail.com" && $_POST["password"] == "bebe
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
         <!-- Google Fonts Roboto -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-        <link rel="stylesheet" href="css/mdb.min.css" />
+        <link rel="stylesheet" href="../css/mdb.min.css" />
+        <title>Login Page</title>
     </head>
     <body class="login-page" style="min-height: 496.8px; background-color: #03bafc">
         <div class="container py-5 h-100" id="login-box">
@@ -31,12 +25,12 @@ if ($_POST["email"] == "ahdanamanullah@gmail.com" && $_POST["password"] == "bebe
                             <p>Sign in untuk masuk ke halaman admin</p>
                             <form action="" method="post">
                                 <div class="mb-3">
-                                    <label for="inputEmail" class="form-label">Email address</label>
+                                    <label for="email" class="form-label">Email address</label>
                                     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email" />
                                     <div id="emailHelp" class="form-text">Email kamu pasti akan dirahasiakan.</div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputPassword" class="form-label">Password</label>
+                                    <label for="email" class="form-label">Password</label>
                                     <input type="password" class="form-control" id="inputPassword" name="password" />
                                 </div>
                                 <a href="register.php">Belum punya akun?</a>

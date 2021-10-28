@@ -1,5 +1,5 @@
 <?php
-    require '../Mission11/functions.php';
+    require '../functions.php';
     if(isset($_POST["register"])){
         if(registrasi($_POST) > 0){
             echo "<script>
@@ -17,12 +17,12 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
         <!-- Google Fonts Roboto -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-        <link rel="stylesheet" href="css/mdb.min.css" />
+        <link rel="stylesheet" href="../css/mdb.min.css" />
+        <title>Register Page</title>
     </head>
     <body class="login-page" style="min-height: 496.8px; background-color: #03bafc">
         <div class="container py-5 h-100" id="login-box">
