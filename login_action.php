@@ -5,3 +5,5 @@ if ($_POST["email"] == "ahdanamanullah@gmail.com" && $_POST["password"] == "bebe
 } else {
   echo "Login Gagal";
 }
+
+?>
