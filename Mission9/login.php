@@ -1,3 +1,13 @@
+<?php
+
+if ($_POST["email"] == "ahdanamanullah@gmail.com" && $_POST["password"] == "bebekkucingkulucu") {
+  echo "Login Berhasil";
+} else {
+  echo "Login Gagal";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,7 +29,7 @@
                         <div class="card-body">
                             <h3 class="mb-5">Sign in</h3>
                             <p>Sign in untuk masuk ke halaman admin</p>
-                            <form action="login_action.php" method="post">
+                            <form action="" method="post">
                                 <div class="mb-3">
                                     <label for="inputEmail" class="form-label">Email address</label>
                                     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email" />

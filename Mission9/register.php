@@ -1,3 +1,16 @@
+<?php
+    require '../Mission11/functions.php';
+    if(isset($_POST["register"])){
+        if(registrasi($_POST) > 0){
+            echo "<script>
+                alert('user baru berhasil dibuat!);
+            </script>";
+        }else{
+            echo mysqli_error($db);
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,21 +32,21 @@
                         <div class="card-body">
                             <h3 class="mb-5">Register</h3>
                             <p>Register jika belum punya akun</p>
-                            <form action="register_action.php" method="post">
+                            <form action="" method="post">
                                 <div class="mb-3">
-                                    <label for="inputEmail" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email" />
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control"  aria-describedby="emailHelp" name="email" />
                                     <div id="emailHelp" class="form-text">Email kamu pasti akan dirahasiakan.</div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputPassword" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword" name="password" />
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control"  name="password" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control" id="confirmPassword" name="password" />
+                                    <label for="confirmPass" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" name="confirmPass" />
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" name="register">Register</button>
                             </form>
                         </div>
                     </div>
