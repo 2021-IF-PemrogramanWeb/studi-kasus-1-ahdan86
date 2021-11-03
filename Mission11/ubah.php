@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if( !isset($_SESSION["login"]) ){
+    header("Location: ../Mission9/login.php");
+    exit;
+}
+
 require '../functions.php';
 
 // ambil data di url
@@ -11,13 +18,13 @@ if( isset($_POST["submit"]) ){
    if(ubah($_POST) > 0){
        echo "<script>
                 alert('data berhasil diubah');
-                document.location.href = 'dashboard_admin.php';
+                document.location.href = 'index.php';
             </script>";
    } 
    else {
        echo "<script>
                 alert('data gagal diubah');
-                document.location.href = 'dashboard_admin.php';
+                document.location.href = 'index.php';
             </script>";
    }
 }

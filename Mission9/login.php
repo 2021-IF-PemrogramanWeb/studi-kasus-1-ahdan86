@@ -1,5 +1,57 @@
 <?php
-require '../functions.php'
+session_start();
+require '../functions.php';
+
+//check cookie
+if(isset($_COOKIE['inihayo']) && isset($_COOKIE['apahayo'])){
+    $id = $_COOKIE['apahayo'];
+    $key = $_COOKIE['inihayo'];
+
+    //ambil username berdasarkan id
+    $result = mysqli_query($db, "SELECT username FROM users WHERE id = $id");
+    $row = mysqli_fetch_assoc($result);
+
+    // cek cookie dan username
+    if ($key === hash('sha256', $row['username'])){
+        $_SESSION['login'] = true;
+    }
+}
+
+if(isset($_SESSION["login"])){
+    header("Location: ../Mission11/index.php");
+    exit;
+}
+
+if(isset($_POST["login"])){
+    $username = $_POST["email"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($db, "SELECT * FROM users WHERE username = '$username'");
+
+    if(mysqli_num_rows($result) === 1){
+        // cek password
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row["password"])){
+            //Set session
+            $_SESSION["login"] = true;
+
+            // if remember me checked
+            if(isset($_POST["remember"])){
+                //buat cookie
+
+                setcookie('apahayo',$row["id"], time() + 60);
+                setcookie('inihayo',hash('sha256', $row["username"]), time() + 60);
+
+            }
+
+            header("Location: ../Mission11/index.php");
+            exit;
+        }
+    }
+
+    $error = true;
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,26 +73,41 @@ require '../functions.php'
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card shadow-2-strong" style="border-radius: 1rem">
                         <div class="card-body">
-                            <h3 class="mb-5">Sign in</h3>
+                            <h3 class="mb-2">Sign in</h3>
                             <p>Sign in untuk masuk ke halaman admin</p>
+                            <?php if( isset($error) ) : ?>
+                                <div class="alert alert-danger">User / Pass salah!</div>
+                            <?php endif; ?>
                             <form action="" method="post">
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email address</label>
+                                <div id="emailHelp" class="form-text">Email kamu pasti akan dirahasiakan.</div>
+                                <div class="form-outline mb-3">
                                     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email" />
-                                    <div id="emailHelp" class="form-text">Email kamu pasti akan dirahasiakan.</div>
+                                    <label for="email" class="form-label">Email address</label>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Password</label>
+                                <div class="form-outline mb-3">
                                     <input type="password" class="form-control" id="inputPassword" name="password" />
+                                    <label for="email" class="form-label">Password</label>
                                 </div>
-                                <a href="register.php">Belum punya akun?</a>
+                                <div class="form-check mb-0">
+                                    <input class="form-check-input me-2" type="checkbox" value="" id="remember" name="remember" />
+                                    <label class="form-check-label" for="remember">
+                                        Remember me
+                                    </label>
+                                </div>
                                 <br>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" name="login" >Login</button>
+                                <br>
+                                <a href="register.php">Belum punya akun?</a>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- MDB -->
+        <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+        ></script>
     </body>
 </html>

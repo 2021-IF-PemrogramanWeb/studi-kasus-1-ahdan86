@@ -1,13 +1,20 @@
 <?php
+session_start();
+
+if( !isset($_SESSION["login"]) ){
+    header("Location: ../Mission9/login.php");
+    exit;
+}
+
 require '../functions.php';
 $mahasiswa = query("SELECT * FROM mahasiswa");
 
 // tombol cari dipress
-
 if( isset($_POST["cari"]) ){
     $mahasiswa = cari($_POST["keyword"]);
     // echo $_POST["keyword"];
 }
+
 
 ?>
 
@@ -30,7 +37,7 @@ if( isset($_POST["cari"]) ){
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand p-2">Dashboard Admin</a>
-        <button class="btn btn-outline-danger my-2 my-sm-0 me-2 " type="submit" name="logout">Logout</button>
+        <a class="btn btn-outline-danger my-2 my-sm-0 me-2 " href="../Mission9/logout.php">Logout</a>
     </nav>
     
     <a class="btn btn-success btn-sm mt-2 mb-3 ms-2" href="tambah.php">+ Tambah data mahasiswa</a>
@@ -50,7 +57,7 @@ if( isset($_POST["cari"]) ){
     
     <br>
 
-    <table class="table table-hover table-striped table-responsive-sm" border="1" cellpadding="10" cellspacing="0">
+    <table class="table table-hover table-striped table-responsive text-center" border="1" cellpadding="10" cellspacing="0">
         <thead>    
             <tr>
                 <th>No.</th>

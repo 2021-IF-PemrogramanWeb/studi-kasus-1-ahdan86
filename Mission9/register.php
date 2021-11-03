@@ -3,7 +3,8 @@ require '../functions.php';
 if(isset($_POST["register"])){
     if(registrasi($_POST) > 0){
         echo "<script>
-            alert('user baru berhasil dibuat!);
+            alert('user baru berhasil dibuat!');
+            document.location.href = 'login.php';
         </script>";
     }else{
         echo mysqli_error($db);
@@ -32,19 +33,20 @@ if(isset($_POST["register"])){
                         <div class="card-body">
                             <h3 class="mb-5">Register</h3>
                             <p>Register jika belum punya akun</p>
+                            <a class="btn btn-primary btn-sm" href="login.php">Kembali ke login page</a>
                             <form action="" method="post">
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email address</label>
+                                <div id="emailHelp" class="form-text">Email kamu pasti akan dirahasiakan.</div>
+                                <div class="form-outline mb-3">
                                     <input type="email" class="form-control"  aria-describedby="emailHelp" name="email" />
-                                    <div id="emailHelp" class="form-text">Email kamu pasti akan dirahasiakan.</div>
+                                    <label for="email" class="form-label">Email address</label>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
+                                <div class="form-outline mb-3">
                                     <input type="password" class="form-control"  name="password" />
+                                    <label for="password" class="form-label">Password</label>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="confirmPass" class="form-label">Confirm Password</label>
+                                <div class="form-outline mb-3">
                                     <input type="password" class="form-control" name="confirmPass" />
+                                    <label for="confirmPass" class="form-label">Confirm Password</label>
                                 </div>
                                 <button type="submit" class="btn btn-primary" name="register">Register</button>
                             </form>
@@ -53,5 +55,10 @@ if(isset($_POST["register"])){
                 </div>
             </div>
         </div>
+    <!-- MDB -->
+    <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+    ></script>
     </body>
 </html>

@@ -146,8 +146,8 @@ function registrasi($data){
     //cek username
     $cekId = mysqli_query($db, "SELECT username FROM users WHERE username = '$username'");
     if(mysqli_fetch_assoc($cekId)){
-        echo"<script>
-            aler('username sudah terdaftar!');
+        echo "<script>
+            alert('username sudah terdaftar!');
         </script>";
         return false;
     }
