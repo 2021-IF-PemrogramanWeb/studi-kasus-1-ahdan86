@@ -1,14 +1,14 @@
 <?php
-    require '../functions.php';
-    if(isset($_POST["register"])){
-        if(registrasi($_POST) > 0){
-            echo "<script>
-                alert('user baru berhasil dibuat!);
-            </script>";
-        }else{
-            echo mysqli_error($db);
-        }
+require '../functions.php';
+if(isset($_POST["register"])){
+    if(registrasi($_POST) > 0){
+        echo "<script>
+            alert('user baru berhasil dibuat!);
+        </script>";
+    }else{
+        echo mysqli_error($db);
     }
+}
 ?>
 
 <!DOCTYPE html>
