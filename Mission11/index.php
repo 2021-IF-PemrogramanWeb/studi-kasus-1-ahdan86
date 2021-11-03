@@ -57,7 +57,7 @@ if( isset($_POST["cari"]) ){
     
     <br>
 
-    <table class="table table-hover table-striped table-responsive text-center" border="1" cellpadding="10" cellspacing="0">
+    <table class="table table-hover table-striped table-responsive text-center" id="dataTable" border="1" cellpadding="10" cellspacing="0">
         <thead>    
             <tr>
                 <th>No.</th>

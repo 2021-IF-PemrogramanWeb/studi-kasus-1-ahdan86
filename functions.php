@@ -77,7 +77,7 @@ function tambah($data){
     // query insert
     $query = "INSERT INTO mahasiswa
                 VALUES
-                ('','$nama', '$nrp', '$email','$jurusan', 
+                (NULL,'$nama', '$nrp', '$email','$jurusan', 
                 '$gambar', '$angkatan')
             ";
     mysqli_query($db, $query);
@@ -163,7 +163,7 @@ function registrasi($data){
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //add username
-    mysqli_query($db, "INSERT INTO users VALUES ('', '$username', '$password')");
+    mysqli_query($db, "INSERT INTO users VALUES (NULL, '$username', '$password')");
     return mysqli_affected_rows($db);
     
 }
