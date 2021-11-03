@@ -36,8 +36,27 @@ $angkatan = query("SELECT angkatan, COUNT(angkatan) as banyak FROM mahasiswa GRO
     <title>Chart data</title>
 </head>
 <body>
-    <div style="width: 700px">
-        <canvas id="myChart"></canvas>
+    <div class="d-flex container mt-5 justify-content-center">
+
+    <!-- Card -->
+        <div class="card" style="width: 64rem;">
+
+            <div class="card-body">
+                <p class="text-uppercase small mb-2"><strong>DATA CHART</strong></p>
+                <h5 class="font-weight-bold mb-0">Banyak Angkatan</h5>
+            </div>
+
+            <hr class="my-0">
+
+            <div class="card-body">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <a type="button" class="btn btn-light btn-rounded btn-sm" href="/Mission11/index.php">Kembali ke Dashboard</a>
+
+        </div>
+    <!-- Card -->
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
