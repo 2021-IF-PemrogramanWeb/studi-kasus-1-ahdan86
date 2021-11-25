@@ -50,56 +50,64 @@ if( isset($_POST["cari"]) ){
         <a class="btn btn-outline-danger my-2 my-sm-0 me-2 " href="../Mission9/logout.php">Logout</a>
     </nav>
     
-    <a class="btn btn-success btn-sm mt-2 mb-3 ms-2" href="tambah.php">+ Tambah data mahasiswa</a>
-    <a class="btn btn-warning btn-sm mt-2 mb-3 " href="../Mission10/chart.php">Chart data angkatan</a>
-    
-    <form action="" method="post">
-        <div class="input-group mt-2 mb-3 ms-2">
-            <div class="form-outline">
-                <input type="search" id="form1" class="form-control" name="keyword" autofocus/>
-                <label class="form-label" for="form1">Siswa, NRP dsb...</label>
+    <div class="container mt-2">
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <a class="btn btn-success btn-sm mt-2 mb-3" href="tambah.php">+ Tambah data mahasiswa</a>
+                <a class="btn btn-warning btn-sm mt-2 mb-3 " href="../Mission10/chart.php">Chart data angkatan</a>
             </div>
-            <button type="submit" class="btn btn-primary" name="cari">
-                <i class="fas fa-search"></i>
-            </button>
+            
+            <div class="col-lg-4 col-7">
+                <form action="" method="post">
+                    <div class="input-group mt-2 mb-3">
+                        <div class="form-outline">
+                            <input type="search" id="form1" class="form-control" name="keyword" autofocus/>
+                            <label class="form-label" for="form1">Siswa, NRP dsb...</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="cari">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
     
-    <br>
-
-    <table class="table table-hover table-striped table-responsive text-center" id="dataTable" border="1" cellpadding="10" cellspacing="0">
-        <thead>    
-            <tr>
-                <th>No.</th>
-                <th>Aksi</th>
-                <th>Gambar</th>
-                <th>NRP</th>
-                <th>Nama</th>
-                <th>Angkatan</th>
-                <th>Email</th>
-                <th>Jurusan</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $i=1; ?>
-            <?php foreach( $mahasiswa as $row ) : ?>
-            <tr>
-                <td><?= $i ?></td>
-                <td>
-                    <a class="btn btn-info btn-sm" href="ubah.php?id=<?= $row["id"]; ?>">Ubah</a> | <a class="btn btn-danger btn-sm" href="hapus.php?id=<?= $row["id"]; ?>" onclick="
-                    return confirm('Yakin untuk menghapus?');">Hapus</a>
-                </td>
-                <td><img src="../img/<?= $row["gambar"]; ?>" width="50"></td>
-                <td><?= $row["nrp"]; ?></td>
-                <td><?= $row["nama"]; ?></td>
-                <td><?= $row["angkatan"]; ?></td>
-                <td><?= $row["email"]; ?></td>
-                <td><?= $row["jurusan"]; ?></td>
-            </tr>
-            <?php $i++; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+        <div class="table-responsive text-center">
+            <table class="table table-hover" id="dataTable" border="1" cellpadding="10" cellspacing="0">
+                <thead>    
+                    <tr>
+                        <th>No.</th>
+                        <th>Aksi</th>
+                        <th>Gambar</th>
+                        <th>NRP</th>
+                        <th>Nama</th>
+                        <th>Angkatan</th>
+                        <th>Email</th>
+                        <th>Jurusan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i=1; ?>
+                    <?php foreach( $mahasiswa as $row ) : ?>
+                    <tr>
+                        <td><?= $i ?></td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="ubah.php?id=<?= $row["id"]; ?>">Ubah</a> | <a class="btn btn-danger btn-sm" href="hapus.php?id=<?= $row["id"]; ?>" onclick="
+                            return confirm('Yakin untuk menghapus?');">Hapus</a>
+                        </td>
+                        <td><img src="../img/<?= $row["gambar"]; ?>" width="50"></td>
+                        <td><?= $row["nrp"]; ?></td>
+                        <td><?= $row["nama"]; ?></td>
+                        <td><?= $row["angkatan"]; ?></td>
+                        <td><?= $row["email"]; ?></td>
+                        <td><?= $row["jurusan"]; ?></td>
+                    </tr>
+                    <?php $i++; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <!-- MDB -->
     <script
         type="text/javascript"
