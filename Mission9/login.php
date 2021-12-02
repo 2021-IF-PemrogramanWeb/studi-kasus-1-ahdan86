@@ -26,31 +26,38 @@ if(isset($_POST["login"])){
     $username = htmlspecialchars($_POST["email"]);
     $password = htmlspecialchars($_POST["password"]);
 
-    $result = mysqli_query($db, "SELECT * FROM users WHERE username = '$username'");
-
-    if(mysqli_num_rows($result) === 1){
-        // cek password
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $row["password"])){
-            //Set session
-            $_SESSION["login"] = true;
-
-            // if remember me checked
-            if(isset($_POST["remember"])){
-                //buat cookie
-
-                setcookie('apahayo',$row["id"], time() + 60);
-                setcookie('inihayo',hash('sha256', $row["username"]), time() + 60);
-
-            }
-
-            header("Location: ../Mission11/index.php");
-            exit;
-        }
+    if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
+        echo "<script>
+            alert('Invalid Email Format!');
+        </script>";
+        $flag = 1;
     }
 
-    $error = true;
+    if(!$flag){
+        $result = mysqli_query($db, "SELECT * FROM users WHERE username = '$username'");
 
+        if(mysqli_num_rows($result) === 1){
+            // cek password
+            $row = mysqli_fetch_assoc($result);
+            if (password_verify($password, $row["password"])){
+                //Set session
+                $_SESSION["login"] = true;
+
+                // if remember me checked
+                if(isset($_POST["remember"])){
+                    //buat cookie
+
+                    setcookie('apahayo',$row["id"], time() + 60);
+                    setcookie('inihayo',hash('sha256', $row["username"]), time() + 60);
+
+                }
+
+                header("Location: ../Mission11/index.php");
+                exit;
+            }
+        }
+    }
+    $error = true;
 }
 ?>
 
