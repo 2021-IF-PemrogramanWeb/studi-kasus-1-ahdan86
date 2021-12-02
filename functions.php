@@ -138,8 +138,13 @@ function cari($keyword){
 
 function registrasi($data){
     global $db;
-
     $username = stripslashes($data["email"]);
+    if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
+        echo "<script>
+            alert('Invalid Email Format!');
+        </script>";
+        return false;
+    }
     $password = mysqli_real_escape_string($db, $data["password"]);
     $password2 = mysqli_real_escape_string($db, $data["confirmPass"]);
 
@@ -147,7 +152,7 @@ function registrasi($data){
     $cekId = mysqli_query($db, "SELECT username FROM users WHERE username = '$username'");
     if(mysqli_fetch_assoc($cekId)){
         echo "<script>
-            alert('username sudah terdaftar!');
+            alert('Email sudah terdaftar!');
         </script>";
         return false;
     }
@@ -155,7 +160,7 @@ function registrasi($data){
     // cek confirmPass
     if($password !== $password2){
         echo "<script>
-            alert('konfirmasi password berbeda');
+            alert('Konfirmasi password berbeda');
         </script>";
         return false;
     }

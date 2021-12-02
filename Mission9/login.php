@@ -23,8 +23,8 @@ if(isset($_SESSION["login"])){
 }
 
 if(isset($_POST["login"])){
-    $username = $_POST["email"];
-    $password = $_POST["password"];
+    $username = htmlspecialchars($_POST["email"]);
+    $password = htmlspecialchars($_POST["password"]);
 
     $result = mysqli_query($db, "SELECT * FROM users WHERE username = '$username'");
 
